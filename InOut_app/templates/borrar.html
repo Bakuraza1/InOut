@@ -10,7 +10,7 @@
 <body>
     {% block content %}
     <div class="agregar">
-        <p id="eliminacion">¿Esta seguro que desea eliminar el producto con la informacion "{{item}}"?</p>
+        <p id="eliminacion">¿Esta seguro que desea eliminar el producto con la información "{{item}}"?</p>
         <form action="{% url 'borrar' item.Nombre %}" method="POST">
             {% csrf_token %}
             <div class="Art-opc1">
