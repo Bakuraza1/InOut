@@ -337,6 +337,7 @@ def tendeciames(mes, request):
     query = []
     names = []
     productos = []
+    ret = []
     #Productos = ((Venta.objects.values_list('Producto_id', flat=True).distinct()))
     Productos =  Producto.objects.filter(Usuario_id=request.user.id).values_list('id', flat=True)
 
@@ -355,7 +356,9 @@ def tendeciames(mes, request):
                 cont += venta.Cantidad
         #print(cont2)
         productos.append([cont/(cont2/13)])
-    return("El producto mas vendido en el mes %s fue el %s con un promedio de %d unidades vendidas al dia" %(meses[mes],names[productos.index(max(productos))], max(productos)[0]))
+    ret.append("El producto mas vendido en el mes %s fue el %s con un promedio de %d unidades vendidas al dia" %(meses[mes],names[productos.index(max(productos))], max(productos)[0]))
+    ret.append("El producto menos vendido en el mes %s fue el %s con un promedio de %d unidades vendidas al dia" %(meses[mes],names[productos.index(min(productos))], min(productos)[0]))
+    return(ret)
 
 
 def mejor(request):

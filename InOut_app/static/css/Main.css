@@ -10,6 +10,12 @@ a{
     text-decoration: none;
 }
 
+h4{
+    margin:20px 80px 0px 80px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 22px;
+}
+
 nav{
     background-color: rgba(53, 52, 52, 1);
     width: 300px;
@@ -100,7 +106,7 @@ header{
 }
 
 .div_img{
-    height: 300px;
+    height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -123,12 +129,18 @@ header{
 .title{
     text-align: center;
     font-family: 'Oswald', sans-serif;
+    font-size: 32px;
 }
 
 .title2{
     text-align: center;
     font-family: 'Oswald', sans-serif;
     font-size: 32px;
+    padding: 10px 10px 10px 10px;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
 }
 
 
@@ -143,6 +155,7 @@ header{
     justify-content: center;
     align-items: center;
     row-gap: 60px;
+    margin-top: 50px;
 }
 
 #Pro-Items22{
@@ -364,6 +377,7 @@ form > label{
     display: flex;
     justify-content: space-between;
     width: fit-content;
+    margin-top: 50px;
 }
 
 #pind_global{

@@ -13,7 +13,7 @@
         <a class = 'aref' href="{% url 'Tmood' %}"> <div class="agregar_prod" id="margen_top"><p class="agregar-font">Filtros</p> </div></a> 
         <div id="tendencias">
             <div class="Sub-container">
-                <h1 class="Sub-title" id="T-H">Tendencia Horas</h1>
+                <h1 class="Sub-title" id="T-H">Tendencias del mes actual en diferentes horas del dia</h1>
             </div>
             <div class="Sub-ten" id="D-H">
                 {% for res in horas %}
@@ -21,7 +21,7 @@
                 {% endfor %}
             </div>
             <div class="Sub-container">
-                <h1 class="Sub-title" id="T-H2">Tendencia Horas filtradas</h1>
+                <h1 class="Sub-title" id="T-H2">Tendencias del mes elegido en diferentes horas del dia</h1>
             </div>
             <div class="Sub-ten" id="D-H2">
                 
@@ -30,7 +30,7 @@
                 {% endfor %}
             </div>
             <div class="Sub-container">
-                <h1 class="Sub-title" id="T-P">Mejores Productos</h1>
+                <h1 class="Sub-title" id="T-P">Rendimiento de los productos respecto al mes anterior</h1>
             </div>
             <div class="Sub-ten" id="D-P">
                 {% for res in compara %}
@@ -38,10 +38,12 @@
                 {% endfor %}
             </div>
             <div class="Sub-container">
-                <h1 class="Sub-title" id="T-M">Tendencia Mes</h1>
+                <h1 class="Sub-title" id="T-M">Producto mas vendido y menos vendido del mes elegido</h1>
             </div>
             <div class="Sub-ten" id="D-M">
-                <div class= "ten_con"> <p class="tend-text">{{meses}}</p></div>
+                {% for res in meses %}
+                <div class= "ten_con"> <p class="tend-text">{{res}}</p></div>
+                {% endfor %}
             </div>
         </div>
     </div>

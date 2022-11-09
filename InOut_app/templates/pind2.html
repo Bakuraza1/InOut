@@ -23,10 +23,10 @@
                     <canvas id="myChartind"></canvas>
                 </div>
                 <div class="Art-opc2">
-                    <a class = 'aref' href="{% url 'Gmod2' %}"> <div class="agregar_prod" id="margen_top"><p class="agregar-font">Filtros</p> </div></a> 
-                    <a class = 'aref' href="{% url 'Reset3' %}"> <div class="agregar_prod" id="margen_top" ><p class="agregar-font">Reset</p> </div></a> 
+                    <a class = 'aref' href="{% url 'Gmod2' %}"> <div class="agregar_prod" id="margen_top"><p class="agregar-font">Fechas</p> </div></a> 
+                    <a class = 'aref' href="{% url 'Reset3' %}"> <div class="agregar_prod" id="margen_top" ><p class="agregar-font">Reiniciar</p> </div></a> 
                     <a class = 'aref' href="{% url 'Comparar' %}"> <div class="agregar_prod" id="margen_top" ><p class="agregar-font">Comparar</p> </div></a> 
-                    <a class = 'aref' href="{% url 'Reset2' %}"> <div class="agregar_prod" id="margen_top" ><p class="agregar-font">Reset2</p> </div></a> 
+                    <a class = 'aref' href="{% url 'Reset2' %}"> <div class="agregar_prod" id="margen_top" ><p class="agregar-font">Reiniciar C</p> </div></a> 
                 </div>
             </div>
         </div>
@@ -93,6 +93,9 @@
                 y: {
                     //max:100,
                     //min:0,
+                    grid: {
+                        color: 'grey'
+                    },
                     beginAtZero: true,
                     title: {
                         font: {
@@ -104,6 +107,9 @@
                     }
                 },
                 x:{
+                    grid: {
+                        color: 'grey'
+                    },
                     title: {
                         font: {
                             size: 15, 

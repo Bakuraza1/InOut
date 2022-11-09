@@ -14,7 +14,7 @@
         <h2 id="Pro-Title">Graficas Ventas</h2>
         <hr/>
         <div class="Art-opc">
-        <a class = 'aref' href="{% url 'Gmod' %}"> <div class="agregar_prod" id="margen_top"><p class="agregar-font">Filtros</p> </div></a> 
+        <a class = 'aref' href="{% url 'Gmod' %}"> <div class="agregar_prod" id="margen_top"><p class="agregar-font">Fecha</p> </div></a> 
         <a class = 'aref' href="{% url 'Reset' %}"> <div class="agregar_prod" id="margen_top"><p class="agregar-font">Reset</p> </div></a> 
         </div>
         <div id="Pro-Items22">
@@ -68,6 +68,9 @@ const myChart = new Chart(ctx, {
             y: {
                 //max:100,
                 //min:0,
+                grid: {
+                color: 'grey'
+                },
                 beginAtZero: true,
                 title: {
                     font: {
@@ -79,6 +82,10 @@ const myChart = new Chart(ctx, {
                 }
             },
             x:{
+                
+                grid: {
+                color: 'grey'
+                },
                 title: {
                     font: {
                         size: 15, 
