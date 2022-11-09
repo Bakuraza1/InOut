@@ -94,7 +94,7 @@ def filter_time(query):
 
 def Reset(request):
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     Tipo_data = Gop.objects.get(id=1)
     Tipo_data.timestep='mes'
     Tipo_data.Fecha=datetime.datetime(1990,1,1)
@@ -104,7 +104,7 @@ def Reset(request):
 
 def Reset2(request):
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     producto = Producto.objects.get(id=current_product)
     producto.Comp=-1
     producto.save(update_fields =['Comp'])
@@ -146,15 +146,38 @@ def Ingreso(request):
 
 def Home(request):
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     productos =  Producto.objects
     return render(request, "Home.html", {"productos":productos})
 
 
 def Usuario(request):
     if not request.user.is_authenticated:
-        return redirect('welcome')
-    return render(request, "Usuario.html")
+        return redirect('Welcome')
+    if request.method == 'POST':
+        if "apellido" in (list(request.POST)):
+            user = User.objects.get(username = request.user.username)
+            user.last_name = request.POST["apellido"]
+            user.save()
+        elif "nombre" in (list(request.POST)):
+            user = User.objects.get(username = request.user.username)
+            user.first_name = request.POST["nombre"]
+            user.save()
+        elif "username" in (list(request.POST)):
+            user = User.objects.get(username = request.user.username)
+            user.username = request.POST["username"]
+            user.save()
+        elif "correo" in (list(request.POST)):
+            user = User.objects.get(username = request.user.username)
+            user.email = request.POST["correo"]
+            user.save()
+        elif "clave" in (list(request.POST)):
+            user = User.objects.get(username = request.user.username)
+            user.set_password(request.POST["clave"])
+            user.save()
+        return redirect("Usuarios") 
+    info=request.user
+    return render(request, "Usuario.html", {'info':info})
 
 def Comparar(request):
     global current_product
@@ -171,7 +194,7 @@ def Comparar(request):
 
 def Productos(request):
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     productos =  Producto.objects.filter(Usuario_id=request.user)
 
     ventas = []
@@ -180,16 +203,16 @@ def Productos(request):
         cantidad.append(p.Cantidad)
         v = list(Venta.objects.filter(Producto_id=p.id).values_list('Cantidad', flat=True))
         ventas.append(sum(v))
-    max_can = productos[(cantidad.index(max(cantidad)))]
-    min_can = productos[(cantidad.index(min(cantidad)))]
-    max_ven = productos[(ventas.index(max(ventas)))]
-    
-        
-    return render(request, "Productos.html", {"productos":productos,"max":max_can, "min":min_can,"maxv":max_ven})
+    if len(productos)!=0:
+        max_can = productos[(cantidad.index(max(cantidad)))]
+        min_can = productos[(cantidad.index(min(cantidad)))]
+        max_ven = productos[(ventas.index(max(ventas)))]   
+        return render(request, "Productos.html", {"productos":productos,"max":max_can, "min":min_can,"maxv":max_ven})
+    return render(request, "Productos2.html", {"productos":productos})
 
 def graficas(request):
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     labels = []
     data = []
     query = []
@@ -219,7 +242,7 @@ def graficas(request):
 
 def Tendencias(request):
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     opciones = ((Gop.objects.filter(id = 1)))
     mes = int(opciones[0].mes)
     horas2 = tendenciashoras2(mes, request)
@@ -405,12 +428,12 @@ def mejor(request):
 
 def Opciones(request):
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     return render(request, "Opciones.html")
 
 def Main(request):
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     return render(request, "Main.html")
 
 
@@ -422,7 +445,7 @@ def Welcome(request):
 def pind(request, id_obj):
     global current_product
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     current_product = id_obj
     query = []
     labels = []
@@ -480,7 +503,7 @@ def test(request):
 
 def registroProducto(request):
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     form=productoForm()
     context={'form':form}
     if request.method == 'POST':
@@ -495,7 +518,7 @@ def registroProducto(request):
 
 def AgregarVenta(request):
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     form=VentaForm()
     context={'form':form}
     if request.method == 'POST':
@@ -508,7 +531,7 @@ def AgregarVenta(request):
 
 def EliminarItem(request):
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     form=Deleteform()
     context={'form':form}
     if request.method == 'POST':
@@ -521,7 +544,7 @@ def EliminarItem(request):
 
 def modificar(request):
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     form=Deleteform()
     context={'form':form}
     if request.method == 'POST':
@@ -534,7 +557,7 @@ def modificar(request):
 
 def actualizar(request, nombre):
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     try:
         productoactualizar = Producto.objects.get(Nombre=nombre)
     except:
@@ -553,7 +576,7 @@ def Gmod(request):
     global tipo
     global fecha
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     if request.method == "POST":
         tipo = request.POST["fecha"]
         fecha = request.POST["fechaini"]
@@ -573,7 +596,7 @@ def Gmod2(request):
     global tipo
     global fecha
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     if request.method == "POST":
         tipo = request.POST["fecha"]
         fecha = request.POST["fechaini"]
@@ -591,7 +614,7 @@ def Gmod2(request):
 
 def Reset3(request):
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     Tipo_data = Gop.objects.get(id=1)
     Tipo_data.timestep='mes'
     Tipo_data.Fecha=datetime.datetime(1990,1,1)
@@ -603,7 +626,7 @@ def Tmood(request):
     global tipo
     global fecha
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     if request.method == "POST":
         mes = request.POST["fecha"]
         try:
@@ -619,7 +642,7 @@ def Tmood(request):
 
 def eliminacionProducto(request, nombre):
     if not request.user.is_authenticated:
-        return redirect('welcome')
+        return redirect('Welcome')
     try:
         productoBorrar=Producto.objects.get(Nombre=nombre)
     except:

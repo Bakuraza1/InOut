@@ -421,3 +421,29 @@ form > label{
 .Sub-container{
     width: 1400px;
 }
+
+#U-datos{
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    gap: 20px;
+}
+
+.u-info{
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 0px;
+
+}
+.u-info2{
+    font-family: 'Open Sans', sans-serif;
+    margin-left: 40px;
+
+}
+
+.u-form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-left: 40px;
+}

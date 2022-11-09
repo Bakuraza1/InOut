@@ -1,2 +1,71 @@
 {% extends "Main.html" %}
 {% load static %}
+{% block content %}
+<div>
+<div>
+    <header>
+        <h1 id="TituloSeccion">
+            Usuario
+        </h1>
+    </header>
+</div>
+<h1 id="Pro-Title">Datos del usuario</h1>
+<div id="U-datos">
+    <div>
+        <h2 class="u-info">Nombre</h2>
+        <hr/>
+        <form method="post" class="u-form">      
+            {% csrf_token %}
+            <input type="text" name="nombre" value="{{info.first_name}}" required></input>
+            <button type="submit" class="send" style="margin: 0px 0px 0px 0px">Cambiar</button>
+        </form>
+    </div>
+    <div>
+        <h2 class="u-info">Apellido</h2>
+        <hr/>
+        <form method="post" class="u-form">      
+            {% csrf_token %}
+            <input type="text" name="apellido" value="{{info.last_name}}" required></input>
+            <button type="submit" class="send" style="margin: 0px 0px 0px 0px">Cambiar</button>
+        </form>
+    </div>
+    <div>
+        <h2 class="u-info">Nombre usuario</h2>
+        <hr/>
+        <form method="post" class="u-form">      
+            {% csrf_token %}
+            <input type="text" name="username" value="{{info.username}}" required></input>
+            <button type="submit" class="send" style="margin: 0px 0px 0px 0px">Cambiar</button>
+        </form>
+    </div>
+    <div>
+        <h2 class="u-info">Correo</h2>
+        <hr/>
+        <form method="post" class="u-form">      
+            {% csrf_token %}
+            <input type="text" name="correo" value="{{info.email}}" required></input>
+            <button type="submit" class="send" style="margin: 0px 0px 0px 0px">Cambiar</button>
+        </form>
+    </div>
+    <div>
+        <h2 class="u-info">Contraseña</h2>
+        <hr/>
+        <form method="post" class="u-form">      
+            {% csrf_token %}
+            <input type="text" name="clave" value="*****************" required></input>
+            <button type="submit" class="send" style="margin: 0px 0px 0px 0px">Cambiar</button>
+        </form>
+    </div>
+            
+
+            
+
+            
+
+            
+
+            
+
+</div>
+</div>
+{% endblock %}
